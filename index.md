@@ -7,9 +7,11 @@ title: Home
 body {
   margin: 0;
   font-family: sans-serif;
+  background-color: #111;
+  color: white;
 }
 
-/* 顶部欢迎区 */
+/* 顶部标题 */
 .hero {
   text-align: center;
   color: #00ff00;
@@ -28,7 +30,7 @@ body {
   margin-bottom: 1rem;
 }
 
-/* 主内容区，左右两列布局 */
+/* 主内容区：左列（头像） + 中列（四个卡片） */
 .main-content {
   display: flex;
   flex-wrap: wrap;
@@ -37,47 +39,57 @@ body {
   margin: 2rem;
 }
 
-/* 左侧块 */
+/* 左列头像 */
 .left-column {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  max-width: 300px;
+  align-items: center;
+  min-width: 180px;
 }
 
-/* 信息卡片 */
-.card {
-  background: rgba(0,0,0,0.7);
-  color: white;
-  padding: 1rem;
-  border-radius: 12px;
-  text-align: center;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-}
-
-/* 头像 */
 .left-column img.profile {
   width: 150px;
   height: 150px;
   border-radius: 50%;
   border: 4px solid #00ff00;
-  margin-top: 1rem;
   object-fit: cover;
 }
 
-/* 右侧背景装饰或额外内容 */
-.right-column {
+/* 中列：四个模块卡片 */
+.center-column {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
   flex: 1;
-  background-image: url('/assets/images/my_bg.jpg');
-  background-size: cover;
-  background-position: center;
+}
+
+.module-card {
+  background: rgba(0,0,0,0.7);
+  color: white;
+  width: 220px;
+  padding: 1.5rem;
+  text-align: center;
   border-radius: 12px;
-  min-height: 400px;
+  text-decoration: none;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.module-card:hover {
+  transform: scale(1.08);
+  background: rgba(0,0,0,0.85);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+}
+
+.module-card h2 {
+  margin: 0.5rem 0;
+  font-size: 1.5rem;
+}
+
+.module-card p {
+  font-size: 1rem;
+  color: #ccffcc;
 }
 
 /* 响应式 */
@@ -90,32 +102,43 @@ body {
     width: 120px;
     height: 120px;
   }
-  .right-column {
-    width: 100%;
-    min-height: 250px;
+  .module-card {
+    width: 160px;
+    padding: 1rem;
   }
 }
 </style>
 
+<!-- 顶部标题 -->
 <div class="hero">
   <h1>Welcome to Ariel's World 🌌</h1>
   <p>The world in my eyes</p>
 </div>
 
+<!-- 主内容区 -->
 <div class="main-content">
+  <!-- 左列：头像 -->
   <div class="left-column">
-    <div class="card">
-      <h2>Ariel's Personal Website</h2>
-      <p>Introduction and latest updates</p>
-    </div>
-    <div class="card">
-      <h2>Theme</h2>
-      <p>High-end, clean, modern design</p>
-    </div>
     <img class="profile" src="/assets/images/my_photo.jpg" alt="Ariel's Photo">
   </div>
 
-  <div class="right-column">
-    <!-- 可以留空或者加装饰 -->
+  <!-- 中列：四个模块 -->
+  <div class="center-column">
+    <a class="module-card" href="/works/">
+      <h2>Works</h2>
+      <p>Poetry, Novel, Play, Zine</p>
+    </a>
+    <a class="module-card" href="/research/">
+      <h2>Research</h2>
+      <p>Essays, Analysis, Studies</p>
+    </a>
+    <a class="module-card" href="/community/">
+      <h2>Community Service</h2>
+      <p>Projects, Volunteering</p>
+    </a>
+    <a class="module-card" href="/other/">
+      <h2>Other</h2>
+      <p>Travel, Photography, Online Media</p>
+    </a>
   </div>
 </div>
