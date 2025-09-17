@@ -13,16 +13,18 @@ title: Home
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     text-align: center;
   }
   .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
+    color: #00ff00; /* 标题鲜绿色 */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
   }
   .hero p {
     font-size: 1.5rem;
+    color: #66ff66; /* 段落浅绿色 */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
   }
 
   /* 响应式，手机屏幕下字体自适应 */
@@ -40,3 +42,4 @@ title: Home
   <h1>Welcome to Ariel's World 🌌</h1>
   <p>The world in my eyes</p>
 </div>
+
