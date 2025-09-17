@@ -1,7 +1,0 @@
-title: "Ariel's personal website"
-description: "The world in my eyes"
-baseurl: "" # 留空
-url: "https://ariel-sketch.github.io" 
-remote_theme: julianolf/jekyll-theme-8bit
-plugins:
-  - jekyll-remote-theme
