@@ -54,8 +54,8 @@ title: Home
 </style>
 
 <div class="hero">
-  <h1>Welcome to WHY's World 🌌</h1>
-  <p>Exploring ideas, creativity, and stories</p>
+  <h1>Welcome to Ariel's World 🌌</h1>
+  <p>The world in my eyes</p>
 </div>
 
 <div class="modules">
