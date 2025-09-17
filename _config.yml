@@ -6,4 +6,16 @@ url: "https://ariel-sketch.github.io"
 remote_theme: julianolf/jekyll-theme-8bit
 plugins:
   - jekyll-remote-theme
-
+nav:
+  - title: "Home"
+    url: /
+  - title: "About Me"
+    url: /about/
+  - title: "My Works"
+    url: /works/
+  - title: "Community Service"
+    url: /community/
+  - title: "Research"
+    url: /research/
+  - title: "Other"
+    url: /other/
