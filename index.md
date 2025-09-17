@@ -24,6 +24,6 @@ title: Home
   </a>
   <a class="module-card" href="/other/">
     <h2>Other</h2>
-    <p>**Travel, Photography, Social Media**</p>
+    <p>Travel, Photography, Social Media</p>
   </a>
 </div>
