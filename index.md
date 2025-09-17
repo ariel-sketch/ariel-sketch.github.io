@@ -5,7 +5,7 @@ title: Home
 
 <style>
   .hero {
-    background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1950&q=80');
+    background-image: url('/assets/images/my_bg.jpg'); /* 替换为你上传的图片路径 */
     background-size: cover;
     background-position: center;
     height: 80vh;
@@ -24,9 +24,19 @@ title: Home
   .hero p {
     font-size: 1.5rem;
   }
+
+  /* 响应式，手机屏幕下字体自适应 */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+    }
+  }
 </style>
 
 <div class="hero">
-  <h1>Welcome to Ariel's World </h1>
-  <p>The world in my eyes.</p>
+  <h1>Welcome to Ariel's World 🌌</h1>
+  <p>The world in my eyes</p>
 </div>
