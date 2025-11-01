@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人作品集</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">
+                <a href="#">Portfolio</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#projects">项目</a></li>
+                <li><a href="#skills">技能</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 首页部分 -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>你好，我是<span class="highlight">你的名字</span></h1>
+            <p>全栈开发工程师 / UI设计师 / 创意工作者</p>
+            <a href="#contact" class="cta-button">联系我</a>
+        </div>
+    </section>
+
+    <!-- 关于部分 -->
+    <section id="about" class="about">
+        <h2>关于我</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>这里是你的个人介绍。描述你的背景、经历和职业目标。展示你的热情和专业能力。</p>
+                <div class="personal-info">
+                    <p><strong>姓名:</strong> 你的名字</p>
+                    <p><strong>邮箱:</strong> your.email@example.com</p>
+                    <p><strong>所在地:</strong> 城市, 国家</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目部分 -->
+    <section id="projects" class="projects">
+        <h2>我的项目</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="https://via.placeholder.com/300x200" alt="项目1">
+                <h3>项目名称 1</h3>
+                <p>项目描述，使用的技术栈和实现的功能。</p>
+                <div class="project-links">
+                    <a href="#" class="project-link">查看演示</a>
+                    <a href="#" class="project-link">源代码</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="https://via.placeholder.com/300x200" alt="项目2">
+                <h3>项目名称 2</h3>
+                <p>项目描述，使用的技术栈和实现的功能。</p>
+                <div class="project-links">
+                    <a href="#" class="project-link">查看演示</a>
+                    <a href="#" class="project-link">源代码</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能部分 -->
+    <section id="skills" class="skills">
+        <h2>技能专长</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>前端开发</h3>
+                <ul>
+                    <li>HTML5 / CSS3</li>
+                    <li>JavaScript / TypeScript</li>
+                    <li>React / Vue.js</li>
+                    <li>Responsive Design</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>后端开发</h3>
+                <ul>
+                    <li>Node.js</li>
+                    <li>Python</li>
+                    <li>SQL / NoSQL</li>
+                    <li>RESTful APIs</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3>工具与其他</h3>
+                <ul>
+                    <li>Git</li>
+                    <li>Docker</li>
+                    <li>AWS / Cloud</li>
+                    <li>UI/UX Design</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系部分 -->
+    <section id="contact" class="contact">
+        <h2>联系我</h2>
+        <div class="contact-content">
+            <form id="contact-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="您的姓名" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="您的邮箱" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder="您的留言" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">发送消息</button>
+            </form>
+            <div class="social-links">
+                <a href="https://github.com/ariel-sketch" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 你的名字. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
