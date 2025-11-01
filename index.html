@@ -1,141 +1,589 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人作品集</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Garage Sale</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px 40px;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: normal;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            font-weight: normal;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Navigation */
+        .navigation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .nav-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            position: relative;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-card-image {
+            width: 100%;
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #666;
+            position: relative;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .nav-card-content {
+            padding: 15px;
+        }
+
+        .nav-card-title {
+            font-size: 16px;
+            font-weight: normal;
+            color: #000;
+            margin-bottom: 5px;
+            text-decoration: underline;
+        }
+
+        .nav-card-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Page sections - initially hidden */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Items grid for garage sale and customers */
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .item {
+            background: #fff;
+            border: 1px solid #ddd;
+            position: relative;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .item:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #666;
+            position: relative;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .item-content {
+            padding: 15px;
+        }
+
+        .item-title {
+            font-size: 16px;
+            font-weight: normal;
+            color: #000;
+            margin-bottom: 5px;
+            text-decoration: underline;
+        }
+
+        .item-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* About page specific styles */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .about-image {
+            width: 540px;
+            height: 540px;
+            background-color: #f5f5f5;
+            margin: 40px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+
+        .research-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+        }
+
+        .research-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        /* Customers page specific styles */
+        .customers-section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .customers-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .media-placeholder {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        /* Back button */
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            background: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .back-button:hover {
+            background: #f5f5f5;
+        }
+
+        /* Logos removed per request */
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .title {
+                font-size: 28px;
+            }
+            
+            .navigation,
+            .items-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navigation,
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- 导航栏 -->
-    <nav>
-        <div class="nav-content">
-            <div class="logo">
-                <a href="#">Portfolio</a>
+    <!-- Decorative logos removed -->
+    
+    <div class="container">
+        <!-- Home Page -->
+        <div id="home" class="page-section active">
+            <div class="header">
+                <h1 class="title">🏠 Garage Sale</h1>
+                <p class="subtitle">A small archive of things I once owned, loved, and almost forgot. Some are poems, some are zines, some are just objects that refused to leave.<br><br>Feel free to browse.</p>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home">首页</a></li>
-                <li><a href="#about">关于</a></li>
-                <li><a href="#projects">项目</a></li>
-                <li><a href="#skills">技能</a></li>
-                <li><a href="#contact">联系</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- 首页部分 -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>你好，我是<span class="highlight">你的名字</span></h1>
-            <p>全栈开发工程师 / UI设计师 / 创意工作者</p>
-            <a href="#contact" class="cta-button">联系我</a>
-        </div>
-    </section>
+            <div class="navigation">
+                <div class="nav-card" onclick="showPage('about')">
+                    <div class="nav-card-image">
+                        <img src="images/My_Photo_Placeholder.jpg" alt="Personal Photo" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="nav-card-content">
+                        <h3 class="nav-card-title">→ About</h3>
+                        <p class="nav-card-description">who's behind the table</p>
+                    </div>
+                </div>
 
-    <!-- 关于部分 -->
-    <section id="about" class="about">
-        <h2>关于我</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>这里是你的个人介绍。描述你的背景、经历和职业目标。展示你的热情和专业能力。</p>
-                <div class="personal-info">
-                    <p><strong>姓名:</strong> 你的名字</p>
-                    <p><strong>邮箱:</strong> your.email@example.com</p>
-                    <p><strong>所在地:</strong> 城市, 国家</p>
+                <div class="nav-card" onclick="showPage('garage-sale')">
+                    <div class="nav-card-image">
+                        Books, Desk & Objects
+                    </div>
+                    <div class="nav-card-content">
+                        <h3 class="nav-card-title">→ Garage Sale</h3>
+                        <p class="nav-card-description">poems, zines & objects</p>
+                    </div>
+                </div>
+
+                <div class="nav-card" onclick="showPage('customers')">
+                    <div class="nav-card-image">
+                        Letters & Community
+                    </div>
+                    <div class="nav-card-content">
+                        <h3 class="nav-card-title">→ Customers</h3>
+                        <p class="nav-card-description">letters, classrooms, communities</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- 项目部分 -->
-    <section id="projects" class="projects">
-        <h2>我的项目</h2>
-        <div class="project-grid">
-            <div class="project-card">
-                <img src="https://via.placeholder.com/300x200" alt="项目1">
-                <h3>项目名称 1</h3>
-                <p>项目描述，使用的技术栈和实现的功能。</p>
-                <div class="project-links">
-                    <a href="#" class="project-link">查看演示</a>
-                    <a href="#" class="project-link">源代码</a>
-                </div>
+        <!-- About Page -->
+        <div id="about" class="page-section">
+            <a href="#" class="back-button" onclick="showPage('home')">← Back to Home</a>
+            
+            <div class="header">
+                <h1 class="title">👧 About</h1>
             </div>
-            <div class="project-card">
-                <img src="https://via.placeholder.com/300x200" alt="项目2">
-                <h3>项目名称 2</h3>
-                <p>项目描述，使用的技术栈和实现的功能。</p>
-                <div class="project-links">
-                    <a href="#" class="project-link">查看演示</a>
-                    <a href="#" class="project-link">源代码</a>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <strong>About</strong><br>
+                    I collect what I can't keep.
+                </div>
+
+                <div class="about-image">
+                    <img src="images/My_Photo_Placeholder.jpg" alt="My Photo" style="width:100%;height:100%;object-fit:cover;">
+                </div>
+
+                <div class="about-text">
+                    I grew up between places, always packing and unpacking the same few things — my poems, my camera, my shark pillow.
+                </div>
+
+                <div class="about-text">
+                    This site is a garage sale of memory: every item here was once mine, or maybe still is, in a way.
+                </div>
+
+                <div class="about-text">
+                    I write, teach, and make small zines. I photograph on an iPhone 5c, the same one that's seen every version of me.
+                </div>
+
+                <div class="about-text">
+                    You can find me through my words more easily than through a map.
+                </div>
+
+                <div class="research-section">
+                    <h3 class="research-title">Selected Research / Study</h3>
+                    <div class="about-text">
+                        I've explored questions that have followed me for years — the kind that feel too big for notebooks but too personal to ignore.
+                    </div>
+                    <div class="about-text">
+                        My research on [论文主题] taught me not just about the subject, but about how I think, observe, and connect ideas. It's part of who I am, and part of the way I see the world.
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- 技能部分 -->
-    <section id="skills" class="skills">
-        <h2>技能专长</h2>
-        <div class="skills-grid">
-            <div class="skill-category">
-                <h3>前端开发</h3>
-                <ul>
-                    <li>HTML5 / CSS3</li>
-                    <li>JavaScript / TypeScript</li>
-                    <li>React / Vue.js</li>
-                    <li>Responsive Design</li>
-                </ul>
+        <!-- Garage Sale Page -->
+        <div id="garage-sale" class="page-section">
+            <a href="#" class="back-button" onclick="showPage('home')">← Back to Home</a>
+            
+            <div class="header">
+                <h1 class="title">🧺 Garage Sale</h1>
+                <p class="subtitle">Everything here used to belong to me — or maybe I belonged to it. Click on an item to open its story.</p>
             </div>
-            <div class="skill-category">
-                <h3>后端开发</h3>
-                <ul>
-                    <li>Node.js</li>
-                    <li>Python</li>
-                    <li>SQL / NoSQL</li>
-                    <li>RESTful APIs</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3>工具与其他</h3>
-                <ul>
-                    <li>Git</li>
-                    <li>Docker</li>
-                    <li>AWS / Cloud</li>
-                    <li>UI/UX Design</li>
-                </ul>
+
+            <div class="items-grid">
+                <div class="item">
+                    <div class="item-image">Poetry Collection Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Poetry Collection</h3>
+                        <p class="item-description">These are the poems I wrote when I was learning to name loneliness. They were never meant to be published — just folded, kept in drawers, read under warm yellow light. Some of them still breathe when I open the file.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Handmade Zines Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Zines</h3>
+                        <p class="item-description">Five small zines I stitched by hand. I like how photocopiers flatten time — how every page feels both disposable and sacred.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">iPhone 5c Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">iPhone 5c</h3>
+                        <p class="item-description">My first camera and my longest companion. It's scratched, slow, stubborn — but it saw everything before I knew how to frame it.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Shark Pillow Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Shark Pillow</h3>
+                        <p class="item-description">He's been with me since I was twelve. He's soft, slightly greyed, smells like childhood and detergent. He knows all my secrets and still sleeps through them.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Books & Poetry Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Books & Poetry I Love</h3>
+                        <p class="item-description">Books that shaped my syntax and made my silences feel less empty. Some are underlined, some are stained by tears or coffee.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Notebook Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Excerpt Notebook</h3>
+                        <p class="item-description">My notebook of borrowed sentences — words I wish I'd written first. Ink, glue, and uneven pages; all in my handwriting that changes with the weather.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Opera Sleeves & Fan Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Opera Sleeves & Fan</h3>
+                        <p class="item-description">My quiet rebellion: I learned how to move like someone from another century. The fan folds like memory — soft, creased, never truly closed.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Ballet Shoes Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Ballet Shoes, Ribbon, Skirt</h3>
+                        <p class="item-description">Worn thin at the toes, soft with sweat and stage dust. I keep them as proof that I once believed grace could save me.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Flowers Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Flowers I Planted</h3>
+                        <p class="item-description">I grew them slowly, one pot at a time. They watched me as I wrote, as I procrastinated, as I stared out windows I couldn't leave. Every bloom feels like a small victory, every wilt a gentle reminder.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Photo Albums Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Photography & Albums</h3>
+                        <p class="item-description">My collection of photo books and albums. I like flipping through them slowly, touching the pages, tracing the captured light. Each image teaches me to see again.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">
+                        <img src="images/coffee_cup.jpg" alt="Coffee Cup" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
+                    <div class="item-content">
+                        <h3 class="item-title">Coffee Cup</h3>
+                        <p class="item-description">This cup has been with me for years. It carries the warmth of countless coffees, late-night studying, and quiet mornings. More than a cup, it holds a dream — the university I longed for, the future I imagined. Every sip reminds me of where I came from and the path I'm still chasing.</p>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <div class="item-image">Class Publication Image</div>
+                    <div class="item-content">
+                        <h3 class="item-title">Class Publication (Elementary → Middle School)</h3>
+                        <p class="item-description">From elementary through middle school, I ran the class publication. Every issue was a small universe: I collected classmates' stories, poems, drawings, and essays, edited them, and made sure they were ready to be printed and shared. Being the editor wasn't just about organizing papers — it was about listening to voices, preserving small sparks of creativity, and giving them a place to be seen.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- 联系部分 -->
-    <section id="contact" class="contact">
-        <h2>联系我</h2>
-        <div class="contact-content">
-            <form id="contact-form">
-                <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="您的姓名" required>
+        <!-- Customers Page -->
+        <div id="customers" class="page-section">
+            <a href="#" class="back-button" onclick="showPage('home')">← Back to Home</a>
+            
+            <div class="header">
+                <h1 class="title">💌 Customers</h1>
+                <p class="subtitle">People who showed up, stayed for a while, and left something behind. Not clients — just witnesses. Here, I share moments of teaching, community, and correspondence that have shaped me.</p>
+            </div>
+
+            <div class="customers-section">
+                <h3 class="section-title">Teaching</h3>
+                <div class="section-content">
+                    I once taught poems to children who had never written one before. They read about stars, rain, and ghosts — and suddenly the classroom felt holy. I didn't teach them how to write. They taught me how to listen.
                 </div>
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="您的邮箱" required>
+                <div class="media-placeholder">上课视频和照片</div>
+                <div class="media-placeholder">学生写的翻译成中文（5首）还有很多他们写的诗的图片</div>
+            </div>
+
+            <div class="customers-section">
+                <h3 class="section-title">Community / Projects</h3>
+                <div class="section-content">
+                    I've been part of several communities and clubs where I could share poetry and ideas:
                 </div>
-                <div class="form-group">
-                    <textarea id="message" name="message" placeholder="您的留言" required></textarea>
+                
+                <div class="section-content">
+                    <strong>• Slam Poetry Club</strong> — performing and experiencing the energy of words aloud
                 </div>
-                <button type="submit" class="submit-btn">发送消息</button>
-            </form>
-            <div class="social-links">
-                <a href="https://github.com/ariel-sketch" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fas fa-envelope"></i></a>
+                <div class="media-placeholder">照片，社团介绍</div>
+                
+                <div class="section-content">
+                    <strong>• Spittoon Club</strong> — where I recited and shared my own poems, exploring voice and presence
+                </div>
+                <div class="media-placeholder">表演的视频和照片</div>
+                
+                <div class="section-content">
+                    <strong>• School Journal</strong> — contributing to the school publication, learning editorial work and collaboration
+                </div>
+                <div class="media-placeholder">校刊合照</div>
+            </div>
+
+            <div class="customers-section">
+                <h3 class="section-title">Letters / Messages</h3>
+                <div class="section-content">
+                    Notes, texts, cards — moments of being understood.
+                </div>
+                <div class="section-content">
+                    To: my teacher, who said "your silence is a kind of poem." For: patience, feedback, kindness. Paid: eternal gratitude.
+                </div>
+                <div class="media-placeholder">我和朋友/老师的信件/礼物，体现人际交往，多张照片</div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <footer>
-        <p>&copy; 2025 你的名字. All rights reserved.</p>
-    </footer>
+    <script>
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update browser history
+            if (pageId === 'home') {
+                history.pushState({page: pageId}, '', '/');
+            } else {
+                history.pushState({page: pageId}, '', `/#${pageId}`);
+            }
+        }
 
-    <script src="script.js"></script>
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.page) {
+                const pageId = event.state.page;
+                // Hide all pages
+                const pages = document.querySelectorAll('.page-section');
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                // Show the page from history
+                document.getElementById(pageId).classList.add('active');
+            } else {
+                // Default to home page
+                const pages = document.querySelectorAll('.page-section');
+                pages.forEach(page => {
+                    page.classList.remove('active');
+                });
+                document.getElementById('home').classList.add('active');
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set initial history state
+            history.replaceState({page: 'home'}, '', '/');
+            
+            // Handle initial page load based on URL hash
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showPage(hash);
+            }
+            
+            // Add click handlers for items
+            const items = document.querySelectorAll('.item');
+            items.forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.item-title').textContent;
+                    console.log(`Clicked on: ${title}`);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
