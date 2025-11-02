@@ -158,52 +158,6 @@
             line-height: 1.5;
         }
 
-        /* Gallery styles */
-        .view-photos-link {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 6px 10px;
-            background: #fff;
-            border: 1px solid #ddd;
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        .view-photos-link:hover {
-            background: #f5f5f5;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 16px;
-            margin-top: 20px;
-        }
-
-        .gallery-item {
-            background: #fff;
-            border: 1px solid #ddd;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 180px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Specific styling for the Poetry Collection description */
-        .poetry-description {
-            font-family: "Times New Roman", Times, serif;
-        }
-
         /* About page specific styles */
         .about-content {
             max-width: 800px;
@@ -422,7 +376,7 @@
                     <div class="item-image">Poetry Collection Image</div>
                     <div class="item-content">
                         <h3 class="item-title">Poetry Collection</h3>
-                        <p class="item-description poetry-description">This collection contains over twenty original poems that reflect my daily life, reading experiences, and emotional world. Through these poems, I explore the small and large moments that shape my thoughts and feelings. Poetry is both a power and a voice for me, a way to be heard when silence might otherwise take over. If you connect with my words, you can understand a part of who I am.</p>
+                        <p class="item-description">These are the poems I wrote when I was learning to name loneliness. They were never meant to be published — just folded, kept in drawers, read under warm yellow light. Some of them still breathe when I open the file.</p>
                     </div>
                 </div>
 
@@ -430,7 +384,7 @@
                     <div class="item-image">Handmade Zines Image</div>
                     <div class="item-content">
                         <h3 class="item-title">Zines</h3>
-                        <p class="item-description">I have created several digital zines that serve as a visual diary of my life and thoughts. They capture moments with my family, journeys I have taken, books I have read, and films I have watched. Each page combines images, text, and layout in a way that reflects how I see and feel the world. When words alone cannot fully convey experience or emotion, these zines become my medium of expression, allowing me to translate memory, reflection, and imagination into something tangible and personal. Through them, I hope others can catch a glimpse of my perspective and the way I experience life.</p>
+                        <p class="item-description">Five small zines I stitched by hand. I like how photocopiers flatten time — how every page feels both disposable and sacred.</p>
                     </div>
                 </div>
 
@@ -470,7 +424,7 @@
                     <div class="item-image">Opera Sleeves & Fan Image</div>
                     <div class="item-content">
                         <h3 class="item-title">Opera Sleeves & Fan</h3>
-                        <p class="item-description">I have been studying Peking Opera since I was five, progressing from Huadan to Qingyi roles. I fell in love not only with the beautiful, intricate costumes but also with the singing and melodies. Every movement, every note, carries a distinct meaning, and performing them allows me to experience a language of gesture and sound that is both expressive and deeply personal.</p>
+                        <p class="item-description">My quiet rebellion: I learned how to move like someone from another century. The fan folds like memory — soft, creased, never truly closed.</p>
                     </div>
                 </div>
 
@@ -478,8 +432,7 @@
                     <div class="item-image">Ballet Shoes Image</div>
                     <div class="item-content">
                         <h3 class="item-title">Ballet Shoes, Ribbon, Skirt</h3>
-                        <p class="item-description">I have been dedicated to ballet for fifteen years. Even after experiencing fractures in different parts of my body, I have continued to pursue this passion. These shoes, ribbons, and skirts carry the marks of practice, perseverance, and love for the art. Ballet is not just a hobby; it is a part of me, and I intend to keep dancing for years to come.</p>
-                        <a href="#" class="view-photos-link" onclick="showPage('ballet-gallery'); event.stopPropagation(); return false;">查看舞蹈照片 / View photos</a>
+                        <p class="item-description">Worn thin at the toes, soft with sweat and stage dust. I keep them as proof that I once believed grace could save me.</p>
                     </div>
                 </div>
 
@@ -500,7 +453,9 @@
                 </div>
 
                 <div class="item">
-                    <div class="item-image">Coffee Cup</div>
+                    <div class="item-image">
+                        <img src="images/coffee_cup.jpg" alt="Coffee Cup" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Coffee Cup</h3>
                         <p class="item-description">This cup has been with me for years. It carries the warmth of countless coffees, late-night studying, and quiet mornings. More than a cup, it holds a dream — the university I longed for, the future I imagined. Every sip reminds me of where I came from and the path I'm still chasing.</p>
@@ -518,30 +473,6 @@
         </div>
 
         <!-- Customers Page -->
-        
-        <!-- Ballet Gallery Page -->
-        <div id="ballet-gallery" class="page-section">
-            <a href="#" class="back-button" onclick="showPage('garage-sale')">← Back to Garage Sale</a>
-            <div class="header">
-                <h1 class="title">京剧 / Ballet & Dance Photos</h1>
-                <p class="subtitle">A small gallery of dance photos. Click any image to open it in a new tab.</p>
-            </div>
-
-            <div class="gallery-grid">
-                <div class="gallery-item"><a href="images/跳舞-1.JPG" target="_blank"><img src="images/跳舞-1.JPG" alt="跳舞1"></a></div>
-                <div class="gallery-item"><a href="images/跳舞2.JPG" target="_blank"><img src="images/跳舞2.JPG" alt="跳舞2"></a></div>
-                <div class="gallery-item"><a href="images/跳舞3.JPG" target="_blank"><img src="images/跳舞3.JPG" alt="跳舞3"></a></div>
-                <div class="gallery-item"><a href="images/跳舞4.JPG" target="_blank"><img src="images/跳舞4.JPG" alt="跳舞4"></a></div>
-                <div class="gallery-item"><a href="images/跳舞5.JPG" target="_blank"><img src="images/跳舞5.JPG" alt="跳舞5"></a></div>
-                <div class="gallery-item"><a href="images/跳舞6.JPG" target="_blank"><img src="images/跳舞6.JPG" alt="跳舞6"></a></div>
-                <div class="gallery-item"><a href="images/跳舞7.JPG" target="_blank"><img src="images/跳舞7.JPG" alt="跳舞7"></a></div>
-                <div class="gallery-item"><a href="images/跳舞8.JPG" target="_blank"><img src="images/跳舞8.JPG" alt="跳舞8"></a></div>
-                <div class="gallery-item"><a href="images/跳舞9.JPG" target="_blank"><img src="images/跳舞9.JPG" alt="跳舞9"></a></div>
-                <div class="gallery-item"><a href="images/跳舞-芭蕾.JPG" target="_blank"><img src="images/跳舞-芭蕾.JPG" alt="跳舞-芭蕾"></a></div>
-                <div class="gallery-item"><a href="images/跳舞小时候.JPG" target="_blank"><img src="images/跳舞小时候.JPG" alt="跳舞小时候"></a></div>
-            </div>
-        </div>
-
         <div id="customers" class="page-section">
             <a href="#" class="back-button" onclick="showPage('home')">← Back to Home</a>
             
