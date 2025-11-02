@@ -7,6 +7,12 @@
 			"command": "cp index.html index.html.bak && sed -i '' 's/font-family: Arial, sans-serif/font-family: \"Times New Roman\", Times, serif/' index.html",
 			"problemMatcher": [],
 			"group": "build"
+		},
+		{
+			"label": "Update gallery images",
+			"type": "shell",
+			"command": "sed -i '' 's/跳舞1.svg/跳舞-1.JPG/g; s/跳舞\\([2-9]\\).svg/跳舞\\1.JPG/g; s/跳舞-芭蕾.svg/跳舞-芭蕾.JPG/g; s/跳舞小时候.svg/跳舞小时候.JPG/g' index.html",
+			"group": "build"
 		}
 	]
 }

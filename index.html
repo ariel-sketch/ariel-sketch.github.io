@@ -158,6 +158,11 @@
             line-height: 1.5;
         }
 
+        /* Specific styling for the Poetry Collection description */
+        .poetry-description {
+            font-family: "Times New Roman", Times, serif;
+        }
+
         /* About page specific styles */
         .about-content {
             max-width: 800px;
@@ -183,17 +188,7 @@
             border: 1px solid #ddd;
         }
 
-        .research-section {
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #ddd;
-        }
-
-        .research-title {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: #000;
-        }
+        /* research section removed */
 
         /* Customers page specific styles */
         .customers-section {
@@ -245,6 +240,33 @@
             background: #f5f5f5;
         }
 
+            /* Gallery styles */
+            .gallery-link {
+                display: inline-block;
+                margin-top: 15px;
+                color: #666;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
+            .gallery-link:hover {
+                color: #000;
+            }
+
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+                margin-top: 30px;
+            }
+
+            .gallery-image {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                border: 1px solid #ddd;
+            }
+
         /* Logos removed per request */
 
         /* Responsive */
@@ -286,7 +308,7 @@
             <div class="navigation">
                 <div class="nav-card" onclick="showPage('about')">
                     <div class="nav-card-image">
-                        <img src="images/My_Photo_Placeholder.jpg" alt="Personal Photo" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="images/about.JPG" alt="About" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div class="nav-card-content">
                         <h3 class="nav-card-title">→ About</h3>
@@ -296,7 +318,7 @@
 
                 <div class="nav-card" onclick="showPage('garage-sale')">
                     <div class="nav-card-image">
-                        Books, Desk & Objects
+                        <img src="images/桌面.JPG" alt="Garage Sale" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div class="nav-card-content">
                         <h3 class="nav-card-title">→ Garage Sale</h3>
@@ -306,65 +328,80 @@
 
                 <div class="nav-card" onclick="showPage('customers')">
                     <div class="nav-card-image">
-                        Letters & Community
+                        <img src="images/支教.JPG" alt="Customers" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div class="nav-card-content">
                         <h3 class="nav-card-title">→ Customers</h3>
                         <p class="nav-card-description">letters, classrooms, communities</p>
                     </div>
                 </div>
+
+                <!-- 京剧 nav card removed per request: access via Opera Sleeves & Fan only -->
+            </div>
+        </div>
+
+        <!-- Ballet Gallery Page (moved to top-level) -->
+        <div id="ballet-gallery" class="page-section">
+            <a href="#garage-sale" class="back-button" onclick="showPage('garage-sale'); return false;">← Back to Garage Sale</a>
+            
+            <div class="header">
+                <h1 class="title">🩰 Ballet Gallery</h1>
+                <p class="subtitle">A collection of moments from my ballet journey, from childhood to present day.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <img src="images/跳舞-1.JPG" alt="Ballet Photo 1" class="gallery-image">
+                <img src="images/跳舞2.JPG" alt="Ballet Photo 2" class="gallery-image">
+                <img src="images/跳舞3.JPG" alt="Ballet Photo 3" class="gallery-image">
+                <img src="images/跳舞4.JPG" alt="Ballet Photo 4" class="gallery-image">
+                <img src="images/跳舞5.JPG" alt="Ballet Photo 5" class="gallery-image">
+                <img src="images/跳舞6.JPG" alt="Ballet Photo 6" class="gallery-image">
+                <img src="images/跳舞7.JPG" alt="Ballet Photo 7" class="gallery-image">
+                <img src="images/跳舞8.JPG" alt="Ballet Photo 8" class="gallery-image">
+                <img src="images/跳舞9.JPG" alt="Ballet Photo 9" class="gallery-image">
+                <img src="images/跳舞-芭蕾.JPG" alt="Ballet Performance" class="gallery-image">
+                <img src="images/跳舞小时候.JPG" alt="Childhood Ballet" class="gallery-image">
             </div>
         </div>
 
         <!-- About Page -->
         <div id="about" class="page-section">
-            <a href="#" class="back-button" onclick="showPage('home')">← Back to Home</a>
+            <a href="#home" class="back-button" onclick="showPage('home'); return false;">← Back to Home</a>
             
             <div class="header">
                 <h1 class="title">👧 About</h1>
             </div>
 
             <div class="about-content">
-                <div class="about-text">
-                    <strong>About</strong><br>
-                    I collect what I can't keep.
-                </div>
-
                 <div class="about-image">
-                    <img src="images/My_Photo_Placeholder.jpg" alt="My Photo" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="images/about.JPG" alt="About" style="width:100%;height:100%;object-fit:cover;">
                 </div>
 
                 <div class="about-text">
-                    I grew up between places, always packing and unpacking the same few things — my poems, my camera, my shark pillow.
+                    Hi, I’m Hongyi Wang, though most people call me Ariel. I’m a 12th-grade student at RDFZ ICC in Beijing, the city where I was born and raised.
                 </div>
 
                 <div class="about-text">
-                    This site is a garage sale of memory: every item here was once mine, or maybe still is, in a way.
+                    I’ve always believed that a person’s memories are like quiet rivers—they may look still, but beneath the surface, everything moves. I grew up between books and running tracks, between art galleries and long Beijing winters, learning to find rhythm and warmth in every space I entered.
                 </div>
 
                 <div class="about-text">
-                    I write, teach, and make small zines. I photograph on an iPhone 5c, the same one that's seen every version of me.
+                    I love sports, art, and literature—not just as hobbies, but as ways of understanding the world. Movement clears my mind; art lets me breathe; and words give me a way to hold time still, even for a moment.
                 </div>
 
                 <div class="about-text">
-                    You can find me through my words more easily than through a map.
+                    This website is a small archive of my thoughts and stories. Here, you can walk through fragments of my memory—photos, essays, projects, and the little things that make me who I am.
                 </div>
 
-                <div class="research-section">
-                    <h3 class="research-title">Selected Research / Study</h3>
-                    <div class="about-text">
-                        I've explored questions that have followed me for years — the kind that feel too big for notebooks but too personal to ignore.
-                    </div>
-                    <div class="about-text">
-                        My research on [论文主题] taught me not just about the subject, but about how I think, observe, and connect ideas. It's part of who I am, and part of the way I see the world.
-                    </div>
+                <div class="about-text">
+                    Welcome to my corner of the world. I hope you stay a while.
                 </div>
             </div>
         </div>
 
         <!-- Garage Sale Page -->
         <div id="garage-sale" class="page-section">
-            <a href="#" class="back-button" onclick="showPage('home')">← Back to Home</a>
+            <a href="#home" class="back-button" onclick="showPage('home'); return false;">← Back to Home</a>
             
             <div class="header">
                 <h1 class="title">🧺 Garage Sale</h1>
@@ -376,7 +413,7 @@
                     <div class="item-image">Poetry Collection Image</div>
                     <div class="item-content">
                         <h3 class="item-title">Poetry Collection</h3>
-                        <p class="item-description">These are the poems I wrote when I was learning to name loneliness. They were never meant to be published — just folded, kept in drawers, read under warm yellow light. Some of them still breathe when I open the file.</p>
+                        <p class="item-description poetry-description">This collection contains over twenty original poems that reflect my daily life, reading experiences, and emotional world. Through these poems, I explore the small and large moments that shape my thoughts and feelings. Poetry is both a power and a voice for me, a way to be heard when silence might otherwise take over. If you connect with my words, you can understand a part of who I am.</p>
                     </div>
                 </div>
 
@@ -384,7 +421,7 @@
                     <div class="item-image">Handmade Zines Image</div>
                     <div class="item-content">
                         <h3 class="item-title">Zines</h3>
-                        <p class="item-description">Five small zines I stitched by hand. I like how photocopiers flatten time — how every page feels both disposable and sacred.</p>
+                        <p class="item-description">I have created several digital zines that serve as a visual diary of my life and thoughts. They capture moments with my family, journeys I have taken, books I have read, and films I have watched. Each page combines images, text, and layout in a way that reflects how I see and feel the world. When words alone cannot fully convey experience or emotion, these zines become my medium of expression, allowing me to translate memory, reflection, and imagination into something tangible and personal. Through them, I hope others can catch a glimpse of my perspective and the way I experience life.</p>
                     </div>
                 </div>
 
@@ -424,7 +461,8 @@
                     <div class="item-image">Opera Sleeves & Fan Image</div>
                     <div class="item-content">
                         <h3 class="item-title">Opera Sleeves & Fan</h3>
-                        <p class="item-description">My quiet rebellion: I learned how to move like someone from another century. The fan folds like memory — soft, creased, never truly closed.</p>
+                        <p class="item-description">I have been studying Peking Opera since I was five, progressing from Huadan to Qingyi roles. I fell in love not only with the beautiful, intricate costumes but also with the singing and melodies. Every movement, every note, carries a distinct meaning, and performing them allows me to experience a language of gesture and sound that is both expressive and deeply personal.</p>
+                        <a href="#opera-gallery" class="gallery-link" onclick="showPage('opera-gallery'); return false;">View Peking Opera Gallery →</a>
                     </div>
                 </div>
 
@@ -432,9 +470,12 @@
                     <div class="item-image">Ballet Shoes Image</div>
                     <div class="item-content">
                         <h3 class="item-title">Ballet Shoes, Ribbon, Skirt</h3>
-                        <p class="item-description">Worn thin at the toes, soft with sweat and stage dust. I keep them as proof that I once believed grace could save me.</p>
+                        <p class="item-description">I have been dedicated to ballet for fifteen years. Even after experiencing fractures in different parts of my body, I have continued to pursue this passion. These shoes, ribbons, and skirts carry the marks of practice, perseverance, and love for the art. Ballet is not just a hobby; it is a part of me, and I intend to keep dancing for years to come.</p>
+                            <a href="#ballet-gallery" class="gallery-link" onclick="showPage('ballet-gallery'); return false;">View Ballet Gallery →</a>
                     </div>
                 </div>
+
+            
 
                 <div class="item">
                     <div class="item-image">Flowers Image</div>
@@ -453,9 +494,7 @@
                 </div>
 
                 <div class="item">
-                    <div class="item-image">
-                        <img src="images/coffee_cup.jpg" alt="Coffee Cup" style="width:100%;height:100%;object-fit:cover;">
-                    </div>
+                    <div class="item-image">Coffee Cup</div>
                     <div class="item-content">
                         <h3 class="item-title">Coffee Cup</h3>
                         <p class="item-description">This cup has been with me for years. It carries the warmth of countless coffees, late-night studying, and quiet mornings. More than a cup, it holds a dream — the university I longed for, the future I imagined. Every sip reminds me of where I came from and the path I'm still chasing.</p>
@@ -472,9 +511,27 @@
             </div>
         </div>
 
+        <!-- Opera Gallery Page -->
+        <div id="opera-gallery" class="page-section">
+            <a href="#garage-sale" class="back-button" onclick="showPage('garage-sale'); return false;">← Back to Garage Sale</a>
+
+            <div class="header">
+                <h1 class="title">🎭 Peking Opera Gallery</h1>
+                <p class="subtitle">Selected moments from my Peking Opera practice and performances.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <img src="images/京剧1.JPG" alt="京剧1" class="gallery-image">
+                <img src="images/京剧2.JPG" alt="京剧2" class="gallery-image">
+                <img src="images/京剧3.JPG" alt="京剧3" class="gallery-image">
+                <img src="images/京剧4.JPG" alt="京剧4" class="gallery-image">
+                <img src="images/京剧8.JPG" alt="京剧8" class="gallery-image">
+            </div>
+        </div>
+
         <!-- Customers Page -->
         <div id="customers" class="page-section">
-            <a href="#" class="back-button" onclick="showPage('home')">← Back to Home</a>
+            <a href="#home" class="back-button" onclick="showPage('home'); return false;">← Back to Home</a>
             
             <div class="header">
                 <h1 class="title">💌 Customers</h1>
