@@ -1,0 +1,12 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Create ballet gallery page",
+			"type": "shell",
+			"command": "cp index.html index.html.bak && sed -i '' 's/font-family: Arial, sans-serif/font-family: \"Times New Roman\", Times, serif/' index.html",
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}
