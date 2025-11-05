@@ -5,6 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Garage Sale</title>
     <style>
+        /* Lightbox styles */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            box-shadow: 0 4px 32px #000a;
+            border-radius: 8px;
+            background: #fff;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 32px;
+            right: 48px;
+            font-size: 48px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10000;
+            user-select: none;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -305,10 +335,16 @@
                 <p class="subtitle">A small archive of things I once owned, loved, and almost forgot. Some are poems, some are zines, some are just objects that refused to leave.<br><br>Feel free to browse.</p>
             </div>
 
+    <!-- Lightbox overlay for gallery images -->
+    <div class="lightbox-overlay" id="lightboxOverlay" style="display:none;">
+        <span class="lightbox-close" id="lightboxClose">&times;</span>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="Zoomed image">
+    </div>
+
             <div class="navigation">
                 <div class="nav-card" onclick="showPage('about')">
                     <div class="nav-card-image">
-                        <img src="images/about.JPG" alt="About" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="images/about.jpg" alt="About" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div class="nav-card-content">
                         <h3 class="nav-card-title">→ About</h3>
@@ -318,7 +354,7 @@
 
                 <div class="nav-card" onclick="showPage('garage-sale')">
                     <div class="nav-card-image">
-                        <img src="images/桌面.JPG" alt="Garage Sale" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="images/桌面.jpg" alt="Garage Sale" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div class="nav-card-content">
                         <h3 class="nav-card-title">→ Garage Sale</h3>
@@ -328,7 +364,7 @@
 
                 <div class="nav-card" onclick="showPage('customers')">
                     <div class="nav-card-image">
-                        <img src="images/支教.JPG" alt="Customers" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="images/支教.jpg" alt="Customers" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div class="nav-card-content">
                         <h3 class="nav-card-title">→ Customers</h3>
@@ -349,6 +385,12 @@
                 <p class="subtitle">A collection of moments from my ballet journey, from childhood to present day.</p>
             </div>
 
+            <div class="about-content">
+                <div class="about-text">
+                    I started learning ballet at the age of four and received professional training in both ballet and Chinese folk dance until I was ten. After getting injured at eleven, I resumed dancing at twelve, taking amateur ballet classes with adults and performing in many self-choreographed dance pieces.
+                </div>
+            </div>
+
             <div class="gallery-grid">
                 <img src="images/跳舞-1.JPG" alt="Ballet Photo 1" class="gallery-image">
                 <img src="images/跳舞2.JPG" alt="Ballet Photo 2" class="gallery-image">
@@ -361,6 +403,13 @@
                 <img src="images/跳舞9.JPG" alt="Ballet Photo 9" class="gallery-image">
                 <img src="images/跳舞-芭蕾.JPG" alt="Ballet Performance" class="gallery-image">
                 <img src="images/跳舞小时候.JPG" alt="Childhood Ballet" class="gallery-image">
+                <img src="images/芭蕾.jpg" alt="芭蕾" class="gallery-image">
+                <img src="images/芭蕾1.jpg" alt="芭蕾1" class="gallery-image">
+                <img src="images/芭蕾2.jpg" alt="芭蕾2" class="gallery-image">
+                <img src="images/芭蕾3.jpg" alt="芭蕾3" class="gallery-image">
+                <img src="images/芭蕾4.jpg" alt="芭蕾4" class="gallery-image">
+                <img src="images/芭蕾5.jpg" alt="芭蕾5" class="gallery-image">
+                <img src="images/芭蕾6.jpg" alt="芭蕾6" class="gallery-image">
             </div>
         </div>
 
@@ -374,11 +423,11 @@
 
             <div class="about-content">
                 <div class="about-image">
-                    <img src="images/about.JPG" alt="About" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="images/about.jpg" alt="About" style="width:100%;height:100%;object-fit:cover;">
                 </div>
 
                 <div class="about-text">
-                    Hi, I’m Hongyi Wang, though most people call me Ariel. I’m a 12th-grade student at RDFZ ICC in Beijing, the city where I was born and raised.
+                    Hi, I'm Hongyi Wang, though most people call me Ariel. I'm a 12th-grade student at RDFZ ICC in Beijing, the city where I was born and raised.
                 </div>
 
                 <div class="about-text">
@@ -410,31 +459,41 @@
 
             <div class="items-grid">
                 <div class="item">
-                    <div class="item-image">Poetry Collection Image</div>
+                    <div class="item-image">
+                        <img src="images/writing.JPG" alt="Poetry Collection" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Poetry Collection</h3>
                         <p class="item-description poetry-description">This collection contains over twenty original poems that reflect my daily life, reading experiences, and emotional world. Through these poems, I explore the small and large moments that shape my thoughts and feelings. Poetry is both a power and a voice for me, a way to be heard when silence might otherwise take over. If you connect with my words, you can understand a part of who I am.</p>
+                        <a href="#poetry-gallery" class="gallery-link" onclick="showPage('poetry-gallery'); return false;">View Poetry Gallery →</a>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="item-image">Handmade Zines Image</div>
+                    <div class="item-image">
+                        <img src="images/zine.jpg" alt="Zines" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Zines</h3>
                         <p class="item-description">I have created several digital zines that serve as a visual diary of my life and thoughts. They capture moments with my family, journeys I have taken, books I have read, and films I have watched. Each page combines images, text, and layout in a way that reflects how I see and feel the world. When words alone cannot fully convey experience or emotion, these zines become my medium of expression, allowing me to translate memory, reflection, and imagination into something tangible and personal. Through them, I hope others can catch a glimpse of my perspective and the way I experience life.</p>
+                        <a href="#zines-gallery" class="gallery-link" onclick="showPage('zines-gallery'); return false;">View Zines Gallery →</a>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="item-image">iPhone 5c Image</div>
+                    <div class="item-image">
+                        <img src="images/手机.jpg" alt="iPhone 5c" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">iPhone 5c</h3>
-                        <p class="item-description">My first camera and my longest companion. It's scratched, slow, stubborn — but it saw everything before I knew how to frame it.</p>
+                        <p class="item-description">My iPhone 5c has been with me since childhood — a small, stubborn companion with a cracked screen and a fading blue shell. Every photo in my zine was taken with it. It doesn’t capture reality as it is, but as it remembers it: soft, grainy, slightly out of focus, as if seen through a thin layer of time.<br><br>Its camera carries a kind of mercy — it forgives the world’s sharpness, turning noise into haze, light into memory. When I scroll through the album, I see not just images but sedimented moments: the corner of a schoolyard, a train window, a face I no longer see.<br><br>The iPhone 5c is obsolete now, yet it holds the pulse of my growing up. It reminds me that nostalgia isn’t about the past itself, but about the distance between what was and what remains.</p>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="item-image">Shark Pillow Image</div>
+                    <div class="item-image">
+                        <img src="images/鲨鱼2.jpg" alt="Shark Pillow" style="width:100%;height:100%;object-fit:contain;object-position:center;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Shark Pillow</h3>
                         <p class="item-description">He's been with me since I was twelve. He's soft, slightly greyed, smells like childhood and detergent. He knows all my secrets and still sleeps through them.</p>
@@ -442,23 +501,30 @@
                 </div>
 
                 <div class="item">
-                    <div class="item-image">Books & Poetry Image</div>
+                    <div class="item-image">
+                        <img src="images/书.jpg" alt="Books & Poetry I Love" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Books & Poetry I Love</h3>
-                        <p class="item-description">Books that shaped my syntax and made my silences feel less empty. Some are underlined, some are stained by tears or coffee.</p>
+                        <p class="item-description">Books that shaped my syntax and made my silences feel less empty. Some are underlined, some are stained by tears or coffee.<br><br>These are only the paper books in my room — books are scattered in every corner of my home. They are the most vital part of my life. My dream is to spend at least five hours reading every day. I love reading, and I love thinking.</p>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="item-image">Notebook Image</div>
+                    <div class="item-image">
+                        <img src="images/摘抄.jpg" alt="Excerpt Notebook" style="width:100%;height:100%;object-fit:cover;transform:rotate(180deg);">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Excerpt Notebook</h3>
                         <p class="item-description">My notebook of borrowed sentences — words I wish I'd written first. Ink, glue, and uneven pages; all in my handwriting that changes with the weather.</p>
+                        <a href="#excerpt-gallery" class="gallery-link" onclick="showPage('excerpt-gallery'); return false;">View Excerpt Gallery →</a>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="item-image">Opera Sleeves & Fan Image</div>
+                    <div class="item-image">
+                        <img src="images/京剧.JPG" alt="Opera Sleeves & Fan" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Opera Sleeves & Fan</h3>
                         <p class="item-description">I have been studying Peking Opera since I was five, progressing from Huadan to Qingyi roles. I fell in love not only with the beautiful, intricate costumes but also with the singing and melodies. Every movement, every note, carries a distinct meaning, and performing them allows me to experience a language of gesture and sound that is both expressive and deeply personal.</p>
@@ -467,7 +533,9 @@
                 </div>
 
                 <div class="item">
-                    <div class="item-image">Ballet Shoes Image</div>
+                    <div class="item-image">
+                        <img src="images/芭蕾舞.jpg" alt="Ballet Shoes" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Ballet Shoes, Ribbon, Skirt</h3>
                         <p class="item-description">I have been dedicated to ballet for fifteen years. Even after experiencing fractures in different parts of my body, I have continued to pursue this passion. These shoes, ribbons, and skirts carry the marks of practice, perseverance, and love for the art. Ballet is not just a hobby; it is a part of me, and I intend to keep dancing for years to come.</p>
@@ -478,23 +546,31 @@
             
 
                 <div class="item">
-                    <div class="item-image">Flowers Image</div>
+                    <div class="item-image">
+                        <img src="images/花6.JPG" alt="Flowers I Planted" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Flowers I Planted</h3>
                         <p class="item-description">I grew them slowly, one pot at a time. They watched me as I wrote, as I procrastinated, as I stared out windows I couldn't leave. Every bloom feels like a small victory, every wilt a gentle reminder.</p>
+                        <a href="#flowers-gallery" class="gallery-link" onclick="showPage('flowers-gallery'); return false;">View Flowers Gallery →</a>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="item-image">Photo Albums Image</div>
+                    <div class="item-image">
+                        <img src="images/album1.jpg" alt="Photography & Albums" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Photography & Albums</h3>
                         <p class="item-description">My collection of photo books and albums. I like flipping through them slowly, touching the pages, tracing the captured light. Each image teaches me to see again.</p>
+                        <a href="#albums-gallery" class="gallery-link" onclick="showPage('albums-gallery'); return false;">View Albums Gallery →</a>
                     </div>
                 </div>
 
                 <div class="item">
-                    <div class="item-image">Coffee Cup</div>
+                    <div class="item-image">
+                        <img src="images/杯子.jpg" alt="Coffee Cup" style="width:100%;height:100%;object-fit:cover;">
+                    </div>
                     <div class="item-content">
                         <h3 class="item-title">Coffee Cup</h3>
                         <p class="item-description">This cup has been with me for years. It carries the warmth of countless coffees, late-night studying, and quiet mornings. More than a cup, it holds a dream — the university I longed for, the future I imagined. Every sip reminds me of where I came from and the path I'm still chasing.</p>
@@ -502,12 +578,131 @@
                 </div>
 
                 <div class="item">
-                    <div class="item-image">Class Publication Image</div>
+                    <div class="item-image"><img src="images/报纸.jpg" alt="Class Publication" style="width:100%;height:100%;object-fit:cover;"></div>
                     <div class="item-content">
                         <h3 class="item-title">Class Publication (Elementary → Middle School)</h3>
                         <p class="item-description">From elementary through middle school, I ran the class publication. Every issue was a small universe: I collected classmates' stories, poems, drawings, and essays, edited them, and made sure they were ready to be printed and shared. Being the editor wasn't just about organizing papers — it was about listening to voices, preserving small sparks of creativity, and giving them a place to be seen.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Flowers Gallery Page -->
+        <div id="flowers-gallery" class="page-section">
+            <a href="#garage-sale" class="back-button" onclick="showPage('garage-sale'); return false;">← Back to Garage Sale</a>
+
+            <div class="header">
+                <h1 class="title">🌸 Flowers Gallery</h1>
+                <p class="subtitle">A collection of flowers I've planted and nurtured over time.</p>
+            </div>
+
+            <div class="gallery-grid">
+                <img src="images/花6.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花2.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花3.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花4.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花5.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花7.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花8.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花9.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花10.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花11.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花12.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花13.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花14.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花15.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花花.JPG" alt="Flowers" class="gallery-image">
+                <img src="images/花花1.JPG" alt="Flowers" class="gallery-image">
+            </div>
+        </div>
+
+        <!-- Excerpt Gallery Page -->
+        <div id="excerpt-gallery" class="page-section">
+            <a href="#garage-sale" class="back-button" onclick="showPage('garage-sale'); return false;">← Back to Garage Sale</a>
+            <div class="header">
+                <h1 class="title">📒 Excerpt Gallery</h1>
+                <p class="subtitle">A selection of pages from my excerpt notebook.</p>
+            </div>
+            <div class="gallery-grid">
+                <img src="images/摘抄1.jpg" alt="Excerpt 1" class="gallery-image">
+                <img src="images/摘抄2.jpg" alt="Excerpt 2" class="gallery-image">
+                <img src="images/摘抄3.jpg" alt="Excerpt 3" class="gallery-image">
+                <img src="images/摘抄4.jpg" alt="Excerpt 4" class="gallery-image">
+                <img src="images/摘抄5.jpg" alt="Excerpt 5" class="gallery-image">
+            </div>
+        </div>
+
+        <!-- Poetry Gallery Page -->
+        <div id="poetry-gallery" class="page-section">
+            <a href="#garage-sale" class="back-button" onclick="showPage('garage-sale'); return false;">← Back to Garage Sale</a>
+            <div class="header">
+                <h1 class="title">✍️ Poetry Gallery</h1>
+                <p class="subtitle">A collection of my original poems reflecting daily life, emotions, and thoughts.</p>
+            </div>
+            <div class="gallery-grid">
+                <img src="images/诗1.jpg" alt="Poem 1" class="gallery-image">
+                <img src="images/诗2.jpg" alt="Poem 2" class="gallery-image">
+                <img src="images/诗3.jpg" alt="Poem 3" class="gallery-image">
+                <img src="images/诗4.jpg" alt="Poem 4" class="gallery-image">
+                <img src="images/诗5.jpg" alt="Poem 5" class="gallery-image">
+                <img src="images/诗6.jpg" alt="Poem 6" class="gallery-image">
+                <img src="images/诗7.jpg" alt="Poem 7" class="gallery-image">
+                <img src="images/诗8.jpg" alt="Poem 8" class="gallery-image">
+                <img src="images/诗9.jpg" alt="Poem 9" class="gallery-image">
+                <img src="images/诗10.jpg" alt="Poem 10" class="gallery-image">
+            </div>
+        </div>
+
+        <!-- Zines Gallery Page -->
+        <div id="zines-gallery" class="page-section">
+            <a href="#garage-sale" class="back-button" onclick="showPage('garage-sale'); return false;">← Back to Garage Sale</a>
+            <div class="header">
+                <h1 class="title">📖 Zines Gallery</h1>
+                <p class="subtitle">Pages from my digital zines - a visual diary of my life and thoughts.</p>
+            </div>
+            <div class="gallery-grid">
+                <img src="images/zine1.jpg" alt="Zine 1" class="gallery-image">
+                <img src="images/zine2.jpg" alt="Zine 2" class="gallery-image">
+                <img src="images/zine3.jpg" alt="Zine 3" class="gallery-image">
+                <img src="images/zine4.jpg" alt="Zine 4" class="gallery-image">
+                <img src="images/zine5.jpg" alt="Zine 5" class="gallery-image">
+                <img src="images/zine6.jpg" alt="Zine 6" class="gallery-image">
+                <img src="images/zine7.jpg" alt="Zine 7" class="gallery-image">
+                <img src="images/zine8.jpg" alt="Zine 8" class="gallery-image">
+                <img src="images/zine10.jpg" alt="Zine 10" class="gallery-image">
+                <img src="images/zine11.jpg" alt="Zine 11" class="gallery-image">
+                <img src="images/zine13.jpg" alt="Zine 13" class="gallery-image">
+                <img src="images/zine14.jpg" alt="Zine 14" class="gallery-image">
+                <img src="images/zine16.jpg" alt="Zine 16" class="gallery-image">
+                <img src="images/zine17.jpg" alt="Zine 17" class="gallery-image">
+                <img src="images/zine18.jpg" alt="Zine 18" class="gallery-image">
+                <img src="images/zine19.jpg" alt="Zine 19" class="gallery-image">
+                <img src="images/zine20.jpg" alt="Zine 20" class="gallery-image">
+                <img src="images/zine21.jpg" alt="Zine 21" class="gallery-image">
+                <img src="images/zine22.jpg" alt="Zine 22" class="gallery-image">
+                <img src="images/zine23.jpg" alt="Zine 23" class="gallery-image">
+                <img src="images/zine24.jpg" alt="Zine 24" class="gallery-image">
+                <img src="images/zine25.jpg" alt="Zine 25" class="gallery-image">
+            </div>
+        </div>
+
+        <!-- Albums Gallery Page -->
+        <div id="albums-gallery" class="page-section">
+            <a href="#garage-sale" class="back-button" onclick="showPage('garage-sale'); return false;">← Back to Garage Sale</a>
+            <div class="header">
+                <h1 class="title">📸 Albums Gallery</h1>
+                <p class="subtitle">A collection of photo albums capturing moments and memories.</p>
+            </div>
+            <div class="gallery-grid">
+                <img src="images/album2.jpg" alt="Album 2" class="gallery-image">
+                <img src="images/album3.jpg" alt="Album 3" class="gallery-image">
+                <img src="images/album4.jpg" alt="Album 4" class="gallery-image">
+                <img src="images/album5.jpg" alt="Album 5" class="gallery-image">
+                <img src="images/album6.jpg" alt="Album 6" class="gallery-image">
+                <img src="images/album7.jpg" alt="Album 7" class="gallery-image">
+                <img src="images/album8.jpg" alt="Album 8" class="gallery-image">
+                <img src="images/album9.jpg" alt="Album 9" class="gallery-image">
+                <img src="images/album10.jpg" alt="Album 10" class="gallery-image">
             </div>
         </div>
 
@@ -535,108 +730,286 @@
             
             <div class="header">
                 <h1 class="title">💌 Customers</h1>
-                <p class="subtitle">People who showed up, stayed for a while, and left something behind. Not clients — just witnesses. Here, I share moments of teaching, community, and correspondence that have shaped me.</p>
             </div>
 
             <div class="customers-section">
-                <h3 class="section-title">Teaching</h3>
+                <h3 class="section-title">Poetry Teaching Project · August 2025</h3>
                 <div class="section-content">
-                    I once taught poems to children who had never written one before. They read about stars, rain, and ghosts — and suddenly the classroom felt holy. I didn't teach them how to write. They taught me how to listen.
+                    In August 2025, I taught a week-long poetry course for a group of left-behind children in the mountains. Together, we read poems from <em>Poems for Children</em> edited by Bei Dao, exploring works by both Chinese and international poets.
                 </div>
-                <div class="media-placeholder">上课视频和照片</div>
-                <div class="media-placeholder">学生写的翻译成中文（5首）还有很多他们写的诗的图片</div>
+                <div class="section-content">
+                    They took careful notes, their eyes full of curiosity and thought. I combined meditation with poetry, hoping to guide them beyond the rigid frames of school textbooks — to help them observe, write, and think from within themselves.
+                </div>
+                <div class="section-content">
+                    It was not only about poetry, but about awakening the quiet power of expression, and showing them that their voices, too, matter.
+                </div>
+                <div class="gallery-grid">
+                    <img src="images/四川1.jpg" alt="Poetry Teaching 1" class="gallery-image">
+                    <img src="images/四川2.jpg" alt="Poetry Teaching 2" class="gallery-image">
+                    <img src="images/四川3.jpg" alt="Poetry Teaching 3" class="gallery-image">
+                </div>
+                <div class="section-content" style="margin-top: 30px; font-style: italic; line-height: 1.8;">
+                    <strong>The Color of Childhood</strong><br><br>
+                    When the egrets glide over the fields,<br>
+                    childhood is a green so alive it almost breathes.<br>
+                    When sweat rolls down a small forehead,<br>
+                    childhood is the color of laughter untainted.<br>
+                    When the streets echo with children's voices,<br>
+                    childhood is a hue that skips and twirls.<br>
+                    And when the morning sun begins to rise,<br>
+                    childhood becomes the color of the earth itself.<br>
+                    I think—<br>
+                    perhaps childhood is a color that cannot be named.
+                </div>
+                <div style="margin-top: 20px; width: 100%;">
+                    <img src="images/支教1.jpg" alt="Teaching Photo" style="width: 100%; height: auto; border: 1px solid #ddd; cursor: pointer;" class="gallery-image">
+                </div>
+                <div class="section-content" style="margin-top: 30px; font-style: italic; line-height: 1.8;">
+                    <strong>I</strong><br><br>
+                    I am a lonely person, unseen by others,<br>
+                    consoled only when I am among them.<br>
+                    I am a sensitive person, almost articulate,<br>
+                    almost able to say what I mean—<br>
+                    what saves me is the courage to keep speaking.<br>
+                    I am a sentimental person, lacking recognition,<br>
+                    starved of understanding,<br>
+                    yet when someone holds me in their heart,<br>
+                    I become open, almost whole.
+                </div>
+                <div style="margin-top: 20px; width: 100%;">
+                    <img src="images/支教4.jpg" alt="Teaching Photo 4" style="width: 100%; height: auto; border: 1px solid #ddd; cursor: pointer;" class="gallery-image">
+                </div>
+                <div class="section-content" style="margin-top: 30px; font-style: italic; line-height: 1.8;">
+                    <strong>The Snow Mountain</strong><br><br>
+                    The wind howls—<br>
+                    the snow mountain's laughter.<br>
+                    Teeth clenched, the challenger endures.<br><br>
+                    The mountain never expected<br>
+                    that the lowly ant<br>
+                    would one day stand at its peak as a giant.<br><br>
+                    From the summit,<br>
+                    the giant looks down at the ants.<br>
+                    But every giant, in time,<br>
+                    becomes the ant beneath another's heel.<br>
+                    And the ant, underfoot,<br>
+                    learns to breathe again.
+                </div>
+                <div style="margin-top: 20px; width: 100%;">
+                    <img src="images/支教3.jpg" alt="Teaching Photo 3" style="width: 100%; height: auto; border: 1px solid #ddd; cursor: pointer;" class="gallery-image">
+                </div>
+                <div class="section-content" style="margin-top: 20px;">
+                    <a href="#students-notes-gallery" class="gallery-link" onclick="showPage('students-notes-gallery'); return false;">View Students' Notes Gallery →</a>
+                </div>
             </div>
 
             <div class="customers-section">
-                <h3 class="section-title">Community / Projects</h3>
+                <h3 class="section-title">Infinitude · School Magazine Editor (2021–2025)</h3>
                 <div class="section-content">
-                    I've been part of several communities and clubs where I could share poetry and ideas:
+                    Since 2021, I have worked as an editor for <em>Infinitude</em>, my school's official magazine. Through its pages, I've recorded stories of campus safety, the golden age of student clubs before the pandemic, and how these communities found ways to survive and adapt during isolation.
                 </div>
-                
                 <div class="section-content">
-                    <strong>• Slam Poetry Club</strong> — performing and experiencing the energy of words aloud
+                    Every week, I joined editorial meetings, pitched ideas, and collaborated with others to refine our issues. What I love most is interviewing and writing：capturing voices, emotions, and fleeting moments. Being an editor taught me not only how to tell stories, but how to listen.
                 </div>
-                <div class="media-placeholder">照片，社团介绍</div>
-                
-                <div class="section-content">
-                    <strong>• Spittoon Club</strong> — where I recited and shared my own poems, exploring voice and presence
+                <div class="gallery-grid">
+                    <img src="images/校刊1.jpg" alt="School Magazine 1" class="gallery-image">
+                    <img src="images/校刊2.jpg" alt="School Magazine 2" class="gallery-image">
+                    <img src="images/校刊3.jpg" alt="School Magazine 3" class="gallery-image">
                 </div>
-                <div class="media-placeholder">表演的视频和照片</div>
-                
-                <div class="section-content">
-                    <strong>• School Journal</strong> — contributing to the school publication, learning editorial work and collaboration
-                </div>
-                <div class="media-placeholder">校刊合照</div>
             </div>
 
             <div class="customers-section">
-                <h3 class="section-title">Letters / Messages</h3>
+                <h3 class="section-title">Running & Sports</h3>
                 <div class="section-content">
-                    Notes, texts, cards — moments of being understood.
+                    Since 7th grade, I've kept a weekly running routine of at least 10 km — through midterms, finals, even Lunar New Year. In April 2025, I traveled to Korea to complete my first half marathon, a milestone that reminded me how endurance often begins in the mind.
                 </div>
                 <div class="section-content">
-                    To: my teacher, who said "your silence is a kind of poem." For: patience, feedback, kindness. Paid: eternal gratitude.
+                    In middle school, I was part of the school volleyball team and actively joined badminton, soccer, and basketball leagues. Since 8th grade, I've also been practicing kickboxing — learning how strength can come from both control and release.
                 </div>
-                <div class="media-placeholder">我和朋友/老师的信件/礼物，体现人际交往，多张照片</div>
+                <div class="section-content">
+                    Sports are an essential part of my life. They've shaped my sense of discipline, balance, and self-trust — the same qualities I bring to everything I do.
+                </div>
+                <div class="gallery-grid">
+                    <img src="images/运动-排球.JPG" alt="Volleyball" class="gallery-image">
+                    <img src="images/运动-跑步3.JPG" alt="Running" class="gallery-image">
+                    <img src="images/球赛.jpg" alt="Ball Game" class="gallery-image">
+                    <img src="images/搏击1.jpg" alt="Kickboxing" class="gallery-image">
+                </div>
+                <div class="section-content" style="margin-top: 20px;">
+                    <a href="#sports-gallery" class="gallery-link" onclick="showPage('sports-gallery'); return false;">View Sports Gallery →</a>
+                </div>
+            </div>
+
+            <div class="customers-section">
+                <h3 class="section-title">My Sister & I</h3>
+                <div class="section-content">
+                    My sister is nine years younger than me — the closest person in my world. At home, I've always been her tutor, teaching her math, Chinese, and English. When she was little, I pushed her stroller through the narrow streets of every city we traveled to, whispering stories only she could hear.
+                </div>
+                <div class="section-content">
+                    Now we learn Peking opera and ballet together. She loves to write about me in her essays, and often tells her friends, half proudly and half shyly, about the things I do.
+                </div>
+                <div class="section-content">
+                    Our bond is soft and steady, like the blanket we were both wrapped in when we were born — warm, inseparable, and filled with the quiet rhythm of growing up side by side.
+                </div>
+                <div class="gallery-grid">
+                    <img src="images/妹妹-家教.jpg" alt="Teaching Sister" class="gallery-image">
+                    <img src="images/妹妹.JPG" alt="Sister" class="gallery-image">
+                </div>
+                <div class="section-content" style="margin-top: 20px;">
+                    <a href="#sister-gallery" class="gallery-link" onclick="showPage('sister-gallery'); return false;">View Sister Gallery →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sister Gallery Page -->
+        <div id="sister-gallery" class="page-section">
+            <a href="#customers" class="back-button" onclick="showPage('customers'); return false;">← Back to Customers</a>
+            <div class="header">
+                <h1 class="title">👭 Sister Gallery</h1>
+                <p class="subtitle">Moments with my sister — growing up together, learning together.</p>
+            </div>
+            <div class="gallery-grid">
+                <img src="images/妹妹2.JPG" alt="Sister 2" class="gallery-image">
+                <img src="images/妹妹3.JPG" alt="Sister 3" class="gallery-image">
+                <img src="images/妹妹4.JPG" alt="Sister 4" class="gallery-image">
+                <img src="images/妹妹5.JPG" alt="Sister 5" class="gallery-image">
+                <img src="images/妹妹7.JPG" alt="Sister 7" class="gallery-image">
+                <img src="images/妹妹8.JPG" alt="Sister 8" class="gallery-image">
+                <img src="images/妹妹9.JPG" alt="Sister 9" class="gallery-image">
+                <img src="images/妹妹10.JPG" alt="Sister 10" class="gallery-image">
+                <img src="images/和妹妹-hug.JPG" alt="Hug with Sister" class="gallery-image">
+                <img src="images/和妹妹-hug2.JPG" alt="Hug with Sister 2" class="gallery-image">
+                <img src="images/和妹妹-推车.JPG" alt="Pushing Stroller" class="gallery-image">
+            </div>
+        </div>
+
+        <!-- Sports Gallery Page -->
+        <div id="sports-gallery" class="page-section">
+            <a href="#customers" class="back-button" onclick="showPage('customers'); return false;">← Back to Customers</a>
+            <div class="header">
+                <h1 class="title">🏃 Sports Gallery</h1>
+                <p class="subtitle">A collection of my sports moments — volleyball, running, and kickboxing.</p>
+            </div>
+            <div class="gallery-grid">
+                <img src="images/运动-排球2.JPG" alt="Volleyball 2" class="gallery-image">
+                <img src="images/运动-排球3.JPG" alt="Volleyball 3" class="gallery-image">
+                <img src="images/运动-排球4.JPG" alt="Volleyball 4" class="gallery-image">
+                <img src="images/运动-排球5.JPG" alt="Volleyball 5" class="gallery-image">
+                <img src="images/运动-跑步.JPG" alt="Running" class="gallery-image">
+                <img src="images/运动跑步4.JPG" alt="Running 4" class="gallery-image">
+                <img src="images/球赛.jpg" alt="Ball Game" class="gallery-image">
+                <img src="images/搏击.jpg" alt="Kickboxing" class="gallery-image">
+            </div>
+        </div>
+
+        <!-- Students Notes Gallery Page -->
+        <div id="students-notes-gallery" class="page-section">
+            <a href="#customers" class="back-button" onclick="showPage('customers'); return false;">← Back to Customers</a>
+            <div class="header">
+                <h1 class="title">📝 Students' Notes Gallery</h1>
+                <p class="subtitle">A collection of notes taken by the children during our poetry course.</p>
+            </div>
+            <div class="gallery-grid">
+                <img src="images/直角1.jpg" alt="Student Note 1" class="gallery-image">
+                <img src="images/直角2.jpg" alt="Student Note 2" class="gallery-image">
+                <img src="images/直角3.jpg" alt="Student Note 3" class="gallery-image">
+                <img src="images/直角4.jpg" alt="Student Note 4" class="gallery-image">
+                <img src="images/直角5.jpg" alt="Student Note 5" class="gallery-image">
+                <img src="images/直角6.jpg" alt="Student Note 6" class="gallery-image">
+                <img src="images/直角7.jpg" alt="Student Note 7" class="gallery-image">
+                <img src="images/直角8.jpg" alt="Student Note 8" class="gallery-image">
+                <img src="images/直角9.jpg" alt="Student Note 9" class="gallery-image">
+                <img src="images/直角10.jpg" alt="Student Note 10" class="gallery-image">
+                <img src="images/直角11.jpg" alt="Student Note 11" class="gallery-image">
+                <img src="images/直角12.jpg" alt="Student Note 12" class="gallery-image">
+                <img src="images/直角13.jpg" alt="Student Note 13" class="gallery-image">
+                <img src="images/直角14.jpg" alt="Student Note 14" class="gallery-image">
+                <img src="images/直角15.jpg" alt="Student Note 15" class="gallery-image">
+                <img src="images/直角16.jpg" alt="Student Note 16" class="gallery-image">
+                <img src="images/直角17.jpg" alt="Student Note 17" class="gallery-image">
+                <img src="images/直角18.jpg" alt="Student Note 18" class="gallery-image">
+                <img src="images/直角19.jpg" alt="Student Note 19" class="gallery-image">
             </div>
         </div>
     </div>
 
     <script>
+
+        // Lightbox logic for gallery images
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.getElementById('lightboxOverlay');
+            const overlayImg = document.getElementById('lightboxImg');
+            const overlayClose = document.getElementById('lightboxClose');
+            // Delegate click for all .gallery-image
+            document.body.addEventListener('click', function(e) {
+                if (e.target.classList.contains('gallery-image')) {
+                    overlayImg.src = e.target.src;
+                    overlay.classList.add('active');
+                    overlay.style.display = 'flex';
+                }
+            });
+            // Close on X click or overlay click
+            overlayClose.addEventListener('click', function() {
+                overlay.classList.remove('active');
+                overlay.style.display = 'none';
+                overlayImg.src = '';
+            });
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                    overlay.style.display = 'none';
+                    overlayImg.src = '';
+                }
+            });
+            // Optional: close on ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    overlay.classList.remove('active');
+                    overlay.style.display = 'none';
+                    overlayImg.src = '';
+                }
+            });
+        });
         function showPage(pageId) {
             // Hide all pages
             const pages = document.querySelectorAll('.page-section');
             pages.forEach(page => {
                 page.classList.remove('active');
             });
-            
+
             // Show selected page
-            document.getElementById(pageId).classList.add('active');
-            
-            // Update browser history
-            if (pageId === 'home') {
-                history.pushState({page: pageId}, '', '/');
-            } else {
-                history.pushState({page: pageId}, '', `/#${pageId}`);
+            const target = document.getElementById(pageId) || document.getElementById('home');
+            target.classList.add('active');
+
+            // Update URL hash without triggering navigation
+            if (window.location.hash !== `#${pageId}`) {
+                window.location.hash = `#${pageId}`;
             }
         }
 
-        // Handle browser back/forward buttons
-        window.addEventListener('popstate', function(event) {
-            if (event.state && event.state.page) {
-                const pageId = event.state.page;
-                // Hide all pages
-                const pages = document.querySelectorAll('.page-section');
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                });
-                // Show the page from history
-                document.getElementById(pageId).classList.add('active');
+        // Handle hash-based navigation (back/forward and direct links)
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showPage(hash);
             } else {
-                // Default to home page
-                const pages = document.querySelectorAll('.page-section');
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                });
-                document.getElementById('home').classList.add('active');
+                showPage('home');
             }
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Set initial history state
-            history.replaceState({page: 'home'}, '', '/');
-            
-            // Handle initial page load based on URL hash
+            // Show initial page based on URL hash or default to home
             const hash = window.location.hash.substring(1);
             if (hash && document.getElementById(hash)) {
                 showPage(hash);
+            } else {
+                showPage('home');
             }
-            
-            // Add click handlers for items
+
+            // Add click handlers for items (debug logging)
             const items = document.querySelectorAll('.item');
             items.forEach(item => {
                 item.addEventListener('click', function() {
-                    const title = this.querySelector('.item-title').textContent;
+                    const title = this.querySelector('.item-title')?.textContent || '';
                     console.log(`Clicked on: ${title}`);
                 });
             });
